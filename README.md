@@ -27,7 +27,7 @@ The task is binary classification: predicting whether an airline passenger was s
 | # | Description | CV AUC | Public LB |
 |---|---|---|---|
 | 1 | LightGBM baseline | 0.95886 | 0.95827 |
-| 2 | + Service rating aggregates & delay features | | |
+| 2 | + svc_mean, svc_min | 0.95863 | |
 
 ## How to Run
 
