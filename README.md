@@ -33,6 +33,13 @@ The task is binary classification: predicting whether an airline passenger was s
 | 5 | Blend: LightGBM + CatBoost | 0.95895 | 0.95836 |
 | 6 |  LogisticRegression baseline | 0.94868 | - |
 | 7 | blend: LightGBM + CatBoost + LogisticRegression | 0.95904 | 0.95847 |
+| 8 | blend: tuned_LightGBM + CatBoost | 0.95916 | 0.95857 |
+| 9 | tuned Catboost | 0.95852 | - |
+| 10 | blend: tuned_LightGBM + tuned_CatBoost | 0.95910 | - |
+| 11 | fd_encorded_LightGBM | 0.96054 | - |
+| 12 | blend: fd_encoded_LightGBM + CatBoost | 0.96058 | 0.96017 |
+| 13 | fd_encoded_catBoost | 0.96031 | - |
+| 14 | blend: fd_encoded_LightGBM + fd_encoded_CatBoost | 0.96072 | 0.96033 |
 
 ## How to Run
 
