@@ -51,3 +51,12 @@ The task is binary classification: predicting whether an airline passenger was s
 
 - Python 3.14
 - pandas, numpy, scikit-learn, lightgbm, matplotlib, seaborn
+
+## Findings
+
+- **Target encoding works only for Flight Distance (Exp 9–12):** Flight Distance has ~3.5k unique values
+  that repeat ~200 times each, behaving like a route identifier rather than a continuous number.
+  Frequency + in-fold target encoding improved LightGBM CV from 0.95903 to 0.96054.
+  Extending the same encoding to Age and delay columns, or to combinations such as Distance × Class,
+  did not help — tree models already capture those relationships through ordinary splits.
+  The smoothing strength (a = 20) was confirmed to be optimal.
