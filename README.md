@@ -40,6 +40,8 @@ The task is binary classification: predicting whether an airline passenger was s
 | 12 | blend: fd_encoded_LightGBM + CatBoost | 0.96058 | 0.96017 |
 | 13 | fd_encoded_catBoost | 0.96031 | - |
 | 14 | blend: fd_encoded_LightGBM + fd_encoded_CatBoost | 0.96072 | 0.96033 |
+| 15 | Stack 8 oof | 0.96071 | - |
+| 16 | blend: seedavg_LightGBM_CatBoost | 0.96708 | 0.96035 |
 
 ## How to Run
 
