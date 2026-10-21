@@ -2,3 +2,6 @@
 .venv/
 .ipynb_checkpoints/
 *.npy
+catboost_info/
+tfm/
+preds/
