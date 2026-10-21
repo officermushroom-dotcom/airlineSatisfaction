@@ -44,6 +44,10 @@ The task is binary classification: predicting whether an airline passenger was s
 | 16 | blend: seedavg_LightGBM_CatBoost | 0.96078 | 0.96035 |
 | 17 | fd_encoded_XGBoost | 0.96031 | - |
 | 18 | Stacking: own models + public TFM OOFs (Chris Deotte, 11 models), LR C=0.003 | 0.96149 | 0.96105 |
+| 19 | Stacking: all own models + TFM OOFs | 0.96166 | - |
+| 20 | Blend: seedavg LGB + seedavg CB + XGB (XGB weight → 0) | 0.96078 | - |
+| 21 | Public 181-member CV stack (own_cv_stack_181, reference) | 0.96217 | - |
+| 22 | Stacking: public 181-member stack + own FD models | 0.96216 | 0.96176 |
 
 ## How to Run
 
@@ -122,3 +126,14 @@ The task is binary classification: predicting whether an airline passenger was s
 - Note: this submission relies on publicly shared predictions. Our self-built pipeline alone
   reaches CV 0.96078 / LB 0.9603x; the TFM stack is reported separately to make our own
   contribution explicit.
+
+  ### Value of a model depends on what it is stacked with
+- | Stacked with | Gain from adding our FD models |
+  |---|---|
+  | 11 TFMs (no route information) | **+0.0003** (0.96125 → 0.96156) |
+  | Public 181-member stack (already contains many route-aware models) | **≈ 0** (0.96217 → 0.96216) |
+- XGBoost with FD encoding received a large coefficient (+0.30) when it was the only route-aware
+  tree model in the stack, but a blend weight of 0 once FD-encoded LightGBM and CatBoost were present.
+- Takeaway: in stacking, a member's value comes from **information the other members lack**,
+  not from its standalone score. Our route encoding was valuable against foundation models that use
+  only raw columns, but redundant against a large public stack that already includes route-aware models.
